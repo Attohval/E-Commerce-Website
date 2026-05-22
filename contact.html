@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact — VtechShop</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+<header class="site-header container"><a class="logo" href="index.html">Vtech<span>Shop</span></a></header>
+<main class="container section">
+  <h1>Contact Us</h1>
+  <div class="page-grid-2">
+    <form id="contact-form" class="card" style="padding:1rem">
+      <label>Name<input name="name" required></label>
+      <label>Email<input type="email" name="email" required></label>
+      <label>Message<textarea name="message" rows="5" required></textarea></label>
+      <div class="form-actions"><button class="btn primary">Send Message</button></div>
+    </form>
+    <aside class="card" style="padding:1rem">
+      <h3>Our office</h3>
+      <p>123 Market St, City, Country</p>
+      <iframe src="https://maps.google.com/maps?q=Times%20Square&t=&z=13&ie=UTF8&iwloc=&output=embed" style="width:100%;height:220px;border:0;border-radius:8px"></iframe>
+    </aside>
+  </div>
+</main>
+<footer class="site-footer container"><small>© 2026 VtechShop. All rights reserved.</small></footer>
+<script>
+  document.getElementById('contact-form').addEventListener('submit', e=>{ e.preventDefault(); alert('Message sent — demo only'); e.target.reset() })
+</script>
+</body></html>

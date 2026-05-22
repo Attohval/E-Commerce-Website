@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Register — AuroraShop</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+<header class="site-header container"><a class="logo" href="index.html">Aurora<span>Shop</span></a></header>
+<main class="container section">
+  <div class="form-shell">
+    <form id="reg-form" class="card" style="padding:1.25rem">
+      <h2>Create an account</h2>
+      <label>Full name<input name="name" required></label>
+      <label>Email<input type="email" name="email" required></label>
+      <label>Password<input type="password" name="password" required></label>
+      <label><input type="checkbox" name="agree"> I agree to the Terms & Privacy</label>
+      <div class="stack-actions form-actions"><button class="btn primary">Register</button><a href="login.html" class="btn">Login</a></div>
+    </form>
+  </div>
+</main>
+<footer class="site-footer container"><small>© 2026 VtechShop. All rights reserved.</small></footer>
+<script>
+  document.getElementById('reg-form').addEventListener('submit', e=>{ e.preventDefault(); alert('Account created — demo only'); window.location='login.html' })
+</script>
+</body></html>

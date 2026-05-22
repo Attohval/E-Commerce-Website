@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VtechShop - Premium E-Commerce</title>
+  <meta name="description" content="Modern, responsive e-commerce template selling electronics, fashion, home goods and more." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loading" class="loading-overlay" aria-hidden="true">
+    <div class="spinner"></div>
+  </div>
+
+  <header class="site-header">
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand"> <a href="index.html" class="logo">Vtech<span>Shop</span></a></div>
+        <div class="search-wrap">
+          <input id="global-search" type="search" placeholder="Search for products, brands and categories..." aria-label="Search">
+        </div>
+        <div class="header-actions">
+          <button id="notif-btn" class="icon-btn" aria-label="Notifications">🔔</button>
+          <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">♡<span class="badge" id="wish-count">0</span></a>
+          <a href="cart.html" class="icon-btn" aria-label="Cart">🛒<span class="badge" id="cart-count">0</span></a>
+          <button id="dark-toggle" class="icon-btn" aria-label="Toggle dark mode">🌓</button>
+          <button id="hamburger" class="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <nav class="main-nav" id="main-nav">
+        <div class="container nav-inner">
+          <ul class="nav-links">
+            <li class="has-dropdown"><a href="shop.html">Shop</a>
+              <div class="dropdown">
+                <ul>
+                  <li><a href="categories.html">All Categories</a></li>
+                  <li><a href="categories.html#electronics">Electronics</a></li>
+                  <li><a href="categories.html#fashion">Fashion</a></li>
+                  <li><a href="categories.html#home">Home & Furniture</a></li>
+                </ul>
+              </div>
+            </li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+          <div class="nav-cta">
+            <a href="#" class="btn ghost">Explore Deals</a>
+            <a href="login.html" class="btn primary">Login</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-slider container" id="hero-slider">
+        <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=1400&q=80')">
+          <div class="slide-content">
+            <h1>Upgrade your lifestyle — curated deals</h1>
+            <p>Top brands, unbeatable prices. Free shipping on orders over $49.</p>
+            <div class="hero-ctas">
+              <a href="shop.html" class="btn primary">Shop Now</a>
+              <a href="categories.html" class="btn ghost">Explore Deals</a>
+            </div>
+          </div>
+        </div>
+        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1400&q=80')">
+          <div class="slide-content">
+            <h1>Fashion & Beauty essentials</h1>
+            <p>New season arrivals — refresh your wardrobe with style.</p>
+            <div class="hero-ctas">
+              <a href="shop.html" class="btn primary">Shop Fashion</a>
+              <a href="categories.html#beauty" class="btn ghost">View Collections</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-indicators" id="hero-indicators"></div>
+    </section>
+
+    <section class="features container">
+      <div class="feature-grid">
+        <div class="feature"> <strong>Free Shipping</strong><span>On orders over $49</span></div>
+        <div class="feature"> <strong>24/7 Support</strong><span>We're here to help</span></div>
+        <div class="feature"> <strong>30-day returns</strong><span>Hassle-free</span></div>
+        <div class="feature"> <strong>Secure payments</strong><span>Trusted checkout</span></div>
+      </div>
+    </section>
+
+    <section class="container section" id="featured">
+      <h2 class="section-title">Featured Products</h2>
+      <div class="card-grid" id="featured-grid"></div>
+      <div class="section-foot"><a href="shop.html" class="btn primary">View All</a></div>
+    </section>
+
+    <section class="container section two-col" id="split">
+      <div class="left">
+        <h2>Flash Sale</h2>
+        <div class="flash-card">
+          <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80" alt="Flash sale electronics">
+          <div class="flash-info">
+            <h3>Up to 50% off electronics</h3>
+            <p>Limited time — while stocks last.</p>
+            <a href="shop.html" class="btn primary">Shop Flash</a>
+          </div>
+        </div>
+      </div>
+      <aside class="right">
+        <h3>Trending Now</h3>
+        <ul class="trending-list" id="trending-list"></ul>
+      </aside>
+    </section>
+
+    <section class="container section testimonials">
+      <h2 class="section-title">What customers say</h2>
+      <div class="testimonial-grid">
+        <blockquote>"Super fast delivery and the product quality is excellent."<cite>— Jane D.</cite></blockquote>
+        <blockquote>"Site is easy to use and checkout was effortless."<cite>— Mark R.</cite></blockquote>
+        <blockquote>"Great customer care and fair prices."<cite>— Priya S.</cite></blockquote>
+      </div>
+    </section>
+
+    <section class="container section brands">
+      <h2 class="section-title">Featured Brands</h2>
+      <div class="brands-carousel" id="brands-carousel">
+        <div class="brand-item">Brand A</div>
+        <div class="brand-item">Brand B</div>
+        <div class="brand-item">Brand C</div>
+        <div class="brand-item">Brand D</div>
+        <div class="brand-item">Brand E</div>
+      </div>
+    </section>
+
+    <section class="container newsletter">
+      <div class="newsletter-inner">
+        <div>
+          <h3>Join our newsletter</h3>
+          <p>Get early access to deals and new arrivals.</p>
+        </div>
+        <form id="newsletter-form" class="newsletter-form">
+          <input type="email" id="newsletter-email" placeholder="you@example.com" required>
+          <button class="btn primary">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="col about">
+        <a href="index.html" class="logo footer-logo">Vtech<span>Shop</span></a>
+        <p>Premium marketplace for electronics, fashion, home goods and more.</p>
+        <div class="socials"> <a href="#">Facebook</a> <a href="#">Twitter</a> <a href="#">Instagram</a></div>
+      </div>
+      <div class="col links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="col support">
+        <h4>Customer Support</h4>
+        <ul>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Payment</a></li>
+          <li><a href="#">Track Order</a></li>
+        </ul>
+      </div>
+      <div class="col contact">
+        <h4>Contact</h4>
+        <p>support@Vtechshop.example</p>
+        <p>+1 (555) 123‑4567</p>
+        <h4>Subscribe</h4>
+        <form id="footer-sub" class="footer-sub">
+          <input type="email" placeholder="Email address" required>
+          <button class="btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom"> <small>© 2026 VtechShop. All rights reserved.</small>
+      <nav class="legal"><a href="#">Terms</a><a href="#">Privacy</a></nav>
+    </div>
+  </footer>
+
+  <button id="back-to-top" aria-label="Back to top">↑</button>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

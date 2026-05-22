@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Checkout — AuroraShop</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+<header class="site-header container"><a class="logo" href="index.html">Vtech<span>Shop</span></a></header>
+<main class="container section">
+  <h2>Checkout</h2>
+  <div class="checkout-layout">
+    <form id="checkout-form" class="card" style="padding:1rem">
+      <h3>Billing & Shipping</h3>
+      <label>Full name<input required name="name"></label>
+      <label>Email<input type="email" required name="email"></label>
+      <label>Address<input required name="address"></label>
+      <label>City<input required name="city"></label>
+      <label>Postal code<input required name="postal"></label>
+      <h3>Payment</h3>
+      <label>Card number<input required name="card"></label>
+      <label>Expiry<input required name="exp"></label>
+      <label>CVC<input required name="cvc"></label>
+      <div class="form-actions"><button class="btn primary">Place order</button></div>
+    </form>
+    <aside class="card" style="padding:1rem">
+      <h3>Order Summary</h3>
+      <div id="order-items"></div>
+      <div class="order-total"><strong id="order-total"></strong></div>
+    </aside>
+  </div>
+</main>
+<footer class="site-footer container"><small>© 2026 VtechShop. All rights reserved.</small></footer>
+<script src="script.js"></script>
+<script src="aurora-api.js"></script>
+<script>
+  const items = JSON.parse(localStorage.getItem('cart')||'[]')
+  const el = document.getElementById('order-items'); if(!items.length) el.innerHTML='<p>Your cart is empty.</p>'
+  else el.innerHTML = items.map(i=>`<div class="summary-row"><span>${i.title} x${i.qty}</span><span>$${(i.price*i.qty).toFixed(2)}</span></div>`).join('')
+  document.getElementById('order-total').textContent = '$'+items.reduce((s,i)=>s+i.price*i.qty,0).toFixed(2)
+  document.getElementById('checkout-form').addEventListener('submit', e=>{ e.preventDefault(); alert('Order placed — demo only'); localStorage.removeItem('cart'); window.location='index.html' })
+</script>
+</body></html>

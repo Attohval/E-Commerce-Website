@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Login — AuroraShop</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+<header class="site-header container"><a class="logo" href="index.html">Aurora<span>Shop</span></a></header>
+<main class="container section">
+  <div class="form-shell narrow">
+    <form id="login-form" class="card" style="padding:1.25rem">
+      <h2>Login</h2>
+      <label>Email<input type="email" required name="email"></label>
+      <label>Password<div class="field-row"><input type="password" id="pw" required name="password"><button id="pw-toggle" class="btn">Show</button></div></label>
+      <label><input type="checkbox" name="remember"> Remember me</label>
+      <div class="stack-actions form-actions"><button class="btn primary">Login</button><a href="register.html" class="btn">Register</a></div>
+      <div class="social-login">Or sign in with <button class="btn">Google</button> <button class="btn">Facebook</button></div>
+    </form>
+  </div>
+</main>
+<footer class="site-footer container"><small>© 2026 VtechShop. All rights reserved.</small></footer>
+<script>
+  document.getElementById('pw-toggle').addEventListener('click',e=>{ e.preventDefault(); const pw=document.getElementById('pw'); if(pw.type==='password'){pw.type='text'; e.target.textContent='Hide'} else {pw.type='password'; e.target.textContent='Show'} })
+  document.getElementById('login-form').addEventListener('submit', e=>{ e.preventDefault(); alert('Login demo — implement server auth'); window.location='index.html' })
+</script>
+</body></html>

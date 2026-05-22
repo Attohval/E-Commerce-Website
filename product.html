@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Product — VtechShop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header container"><a class="logo" href="index.html">Vtech<span>Shop</span></a></header>
+  <main class="container section">
+    <div id="product-area" class="card product-detail"></div>
+  </main>
+  <footer class="site-footer container"><small>© 2026 VtechShop. All rights reserved.</small></footer>
+
+  <script src="script.js"></script>
+  <script src="aurora-api.js"></script>
+  <script>
+    function qs(name){ const params=new URLSearchParams(location.search); return params.get(name) }
+    const id = qs('id') || 'p1'
+    const p = (window.Aurora && window.Aurora.products.find(x=>x.id===id)) || null
+    const area = document.getElementById('product-area')
+    if(!p){ area.innerHTML='<p>Product not found</p>'; }
+    else{
+      area.innerHTML = `
+        <div>
+          <img src="${p.img}" alt="${p.title}">
+        </div>
+        <div>
+          <h1>${p.title}</h1>
+          <div class="product-price-row"><strong class="product-price">$${p.price.toFixed(2)}</strong>${p.old?`<small class="muted">$${p.old.toFixed(2)}</small>`:''}</div>
+          <p class="muted">⭐ ${p.rate} • Category: ${p.category}</p>
+          <p class="product-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Product description, features and specifications listed here to inform purchase decisions.</p>
+          <div class="product-actions">
+            <button id="add-cart" class="btn primary">Add to cart</button>
+            <button id="wish" class="btn">♡ Wishlist</button>
+          </div>
+          <hr style="margin:1rem 0">
+          <h4>Shipping & Returns</h4>
+          <p class="muted">Free shipping over $49. 30-day returns.</p>
+        </div>
+      `
+      document.getElementById('add-cart').addEventListener('click', ()=>{ window.Aurora.addToCart(p.id); alert('Added to cart') })
+      document.getElementById('wish').addEventListener('click', ()=>{ window.Aurora.toggleWishlist(p.id); alert('Wishlist updated') })
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Wishlist — VtechShop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header container"><a class="logo" href="index.html">Vtech<span>Shop</span></a></header>
+  <main class="container section">
+    <h2>Your Wishlist</h2>
+    <div id="wish-area" class="card" style="padding:1rem"></div>
+  </main>
+  <footer class="site-footer container"><small>© 2026 VtechShop. All rights reserved.</small></footer>
+
+  <script src="script.js"></script>
+  <script src="aurora-api.js"></script>
+  <script>
+    function render(){ const area=document.getElementById('wish-area'); const wish = JSON.parse(localStorage.getItem('wishlist')||'[]'); if(!wish.length){ area.innerHTML='<p>Your wishlist is empty. <a href="shop.html">Start adding items</a></p>'; return }
+      const list = wish.map(id=>{ const p = (window.Aurora.products||[]).find(x=>x.id===id); return `<div class="wish-row"><div class="item-main"><img src="${p.img}" alt="${p.title}"><div><strong>${p.title}</strong><div class="muted">$${p.price.toFixed(2)}</div></div></div><div class="item-actions"><button class="btn" data-add="${p.id}">Add to cart</button> <button class="btn" data-rem="${p.id}">Remove</button></div></div>` }).join('')
+      area.innerHTML = list
+      document.querySelectorAll('[data-add]').forEach(b=>b.addEventListener('click',e=>{ window.Aurora.addToCart(e.target.dataset.add); alert('Added to cart') }))
+      document.querySelectorAll('[data-rem]').forEach(b=>b.addEventListener('click',e=>{ const id=e.target.dataset.rem; let w=JSON.parse(localStorage.getItem('wishlist')||'[]'); w=w.filter(x=>x!==id); localStorage.setItem('wishlist',JSON.stringify(w)); render() }))
+    }
+    render()
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cart — VtechShop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header container"><a class="logo" href="index.html">Vtech<span>Shop</span></a></header>
+  <main class="container section">
+    <h2>Your Cart</h2>
+    <div id="cart-area" class="card" style="padding:1rem"></div>
+  </main>
+<footer class="site-footer container"><small>© 2026 VtechShop. All rights reserved.</small></footer>
+  <script src="script.js"></script>
+  <script src="aurora-api.js"></script>
+  <script>
+    function render(){ const area=document.getElementById('cart-area'); const cart = JSON.parse(localStorage.getItem('cart')||'[]'); if(!cart.length){ area.innerHTML='<p>Your cart is empty. <a href="shop.html">Continue shopping</a></p>'; return }
+      const rows = cart.map(it=>`<div class="cart-row"><div class="item-main"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=120&q=80" alt=""><div><strong>${it.title}</strong><div class="muted">$${it.price.toFixed(2)}</div></div></div><div class="item-actions"><button class="btn" data-dec="${it.id}">-</button> <span class="qty">${it.qty}</span> <button class="btn" data-inc="${it.id}">+</button></div></div>`).join('')
+      const total = cart.reduce((s,i)=>s+i.price*i.qty,0)
+      area.innerHTML = rows + `<div class="cart-total"><strong>Total: $${total.toFixed(2)}</strong><div class="form-actions"><a href="checkout.html" class="btn primary">Checkout</a></div></div>`
+      document.querySelectorAll('[data-inc]').forEach(b=>b.addEventListener('click',e=>{ const id=e.target.dataset.inc; const c=JSON.parse(localStorage.getItem('cart')||'[]'); const it=c.find(x=>x.id===id); it.qty++; localStorage.setItem('cart',JSON.stringify(c)); render() }))
+      document.querySelectorAll('[data-dec]').forEach(b=>b.addEventListener('click',e=>{ const id=e.target.dataset.dec; let c=JSON.parse(localStorage.getItem('cart')||'[]'); const it=c.find(x=>x.id===id); if(it.qty>1) it.qty--; else c=c.filter(x=>x.id!==id); localStorage.setItem('cart',JSON.stringify(c)); render() }))
+    }
+    render()
+  </script>
+</body>
+</html>

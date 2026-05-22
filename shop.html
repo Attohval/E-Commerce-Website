@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Shop — VtechShop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- reuse header from index for simplicity -->
+  <header class="site-header">
+    <div class="topbar container topbar-inner">
+      <div class="brand"><a class="logo" href="index.html">Vtech<span>Shop</span></a></div>
+      <div class="search-wrap"><input id="shop-search" type="search" placeholder="Search products"></div>
+      <div class="header-actions"><a href="cart.html" class="icon-btn">🛒<span class="badge" id="cart-count">0</span></a>
+        <button id="hamburger" class="hamburger"><span></span><span></span><span></span></button></div>
+    </div>
+    <nav class="main-nav"><div class="container nav-inner"><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="categories.html">Categories</a></li></ul></div></nav>
+  </header>
+
+  <main class="container section">
+    <div class="shop-layout">
+      <aside class="filters card" id="filters">
+        <h3>Filters</h3>
+        <div>
+          <label>Category</label>
+          <select id="filter-category"><option value="">All</option><option value="electronics">Electronics</option><option value="fashion">Fashion</option><option value="home">Home</option><option value="beauty">Beauty</option></select>
+        </div>
+        <div>
+          <label>Price</label>
+          <input id="filter-price" type="range" min="0" max="300" value="300">
+        </div>
+        <div>
+          <label>Sort</label>
+          <select id="sort-by"><option value="relevance">Relevance</option><option value="price-asc">Price low→high</option><option value="price-desc">Price high→low</option></select>
+        </div>
+      </aside>
+
+      <section>
+        <div class="section-head">
+          <h2>Shop</h2>
+          <div>
+            <button id="grid-btn" class="btn">Grid</button>
+            <button id="list-btn" class="btn">List</button>
+          </div>
+        </div>
+        <div id="products-grid" class="card-grid"></div>
+        <div id="pagination" class="pagination"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer container"><small>© 2026 VtechShop</small></footer>
+
+  <script src="script.js"></script>
+  <script src="aurora-api.js"></script>
+  <script>
+    // render shop products and filters
+    const grid = document.getElementById('products-grid')
+    const products = (window.Aurora && window.Aurora.products) || []
+    function render(list){ grid.innerHTML = list.map(p=>`<article class="card" data-id="${p.id}"><img src="${p.img}" alt="${p.title}"><div class="meta"><strong>${p.title}</strong><div class="product-card-foot"><span>$${p.price.toFixed(2)}</span><div class="item-actions"><button class="btn" data-wish="${p.id}">♡</button> <button class="btn primary" data-add="${p.id}">Add</button></div></div></div></article>`).join('')
+      document.querySelectorAll('[data-add]').forEach(b=>b.addEventListener('click', e=>{ const id=e.target.dataset.add; window.Aurora.addToCart(id); alert('Added to cart') }))
+      document.querySelectorAll('[data-wish]').forEach(b=>b.addEventListener('click', e=>{ window.Aurora.toggleWishlist(e.target.dataset.wish); alert('Wishlist updated') }))
+    }
+    render(products)
+    // simple filters
+    document.getElementById('filter-category').addEventListener('change',e=>{ const v=e.target.value; render(v?products.filter(p=>p.category===v):products) })
+    document.getElementById('filter-price').addEventListener('input',e=>{ const v=+e.target.value; render(products.filter(p=>p.price<=v)) })
+  </script>
+</body>
+</html>
